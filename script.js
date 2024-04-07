@@ -171,6 +171,12 @@ class Calculadora {
         this.nrVisor = String(1/this.nrVisor);
     }
 
+    // tecla Sinal : calcula a inversão de sinal de um número
+    teclaSinal() {
+        if (this.estadoErro) return;
+        this.nrVisor = -this.nrVisor;
+    }
+
     // tecla Raiz : calcula a raiz quadrada de um número
     teclaRaiz() {   
         if (this.estadoErro) return;
@@ -255,6 +261,12 @@ let teclaCLM = () => {
 // INVERTE UM NÚMERO NO VISOR
 let tecla1x = () => {
     calculadora.tecla1x();
+    atualizaVisor();
+}
+
+// INVERTE O SINAL DO NÚMERO NO VISOR
+let teclaSinal = () => {
+    calculadora.teclaSinal();
     atualizaVisor();
 }
 
