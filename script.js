@@ -6,6 +6,7 @@ class Calculadora {
         this.iniciouSegundo = false;
         this.memTemp = '';
         this.estadoErro = false;
+        this.desligado = false;
         this.memoria = 0;
         this.op = {
             NOP: 0,
@@ -22,6 +23,10 @@ class Calculadora {
         if (this.estadoErro) {
             this.nrVisor = '0';
             return 'ERRO!';
+        }
+        if (this.desligado) {
+            this.nrVisor = '0';
+            return 'ㅤ';
         }
         if (this.nrVisor.length == 0) {
             this.nrVisor = '0';
@@ -83,7 +88,7 @@ class Calculadora {
         let resultado = 0;
         switch (this.opAtual) {
             case this.op.DIV:
-                if (num2 == 0) {
+                if (num2 == 0 && this.desligado == false) {
                     this.estadoErro = true;
                     return;
                 }
@@ -111,8 +116,18 @@ class Calculadora {
     
     // Limpa todos os dados (incluindo a memória)
     teclaOnOff() {
-        teclaC();
-        teclaCLM();
+        if (this.desligado == true) {
+            this.desligado = false;
+            teclaC();
+            teclaCLM();
+            this.nrVisor = '0';
+            return '0';
+        }
+        if (this.desligado == false) {
+            teclaC();
+            teclaCLM();
+            this.desligado = true;
+        }
     }
 
     // Limpa dados (exceto memória)
