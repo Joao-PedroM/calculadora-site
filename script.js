@@ -106,6 +106,7 @@ class Calculadora {
             case this.op.PORC:
                 num1 = num1*0.01
                 resultado = num1*num2;
+                break;
         }
         this.opAtual = this.op.NOP;
         this.iniciouSegundo = false;
@@ -162,6 +163,12 @@ class Calculadora {
     teclaCLM() {
         if (this.estadoErro) return;
         this.memoria = 0;
+    }
+
+    // tecla 1x : calcula o inverso do número apresentado no visor
+    tecla1x() {
+        if (this.estadoErro) return;
+        this.nrVisor = String(1/this.nrVisor);
     }
 
 }
@@ -227,6 +234,12 @@ let teclaRM = () => {
 // APAGA TODO O CONTEÚDO DA MEMÓRIA
 let teclaCLM = () => {
     calculadora.teclaCLM();
+}
+
+// INVERTE UM NÚMERO
+let tecla1x = () => {
+    calculadora.tecla1x();
+    atualizaVisor();
 }
 
 // ========================================================
