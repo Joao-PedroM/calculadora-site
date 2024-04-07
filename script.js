@@ -171,6 +171,22 @@ class Calculadora {
         this.nrVisor = String(1/this.nrVisor);
     }
 
+    // tecla Raiz : calcula a raiz quadrada de um número
+    teclaRaiz() {   
+        if (this.estadoErro) return;
+        if (this.nrVisor == 0) {
+            return 0;
+        }
+        if(this.nrVisor < 0) {
+            this.estadoErro = true;
+            return;
+        }
+        let guess = (this.nrVisor/2);
+        for (var i = 0; i < 100; i++) {
+            guess = (guess + this.nrVisor / guess) / 2;
+        }
+        this.nrVisor = guess;
+    }
 }
 
 // ==================================================================
@@ -236,9 +252,15 @@ let teclaCLM = () => {
     calculadora.teclaCLM();
 }
 
-// INVERTE UM NÚMERO
+// INVERTE UM NÚMERO NO VISOR
 let tecla1x = () => {
     calculadora.tecla1x();
+    atualizaVisor();
+}
+
+// MOSTRA A RAIZ DO NÚMERO NO VISOR
+let teclaRaiz = () => {
+    calculadora.teclaRaiz();
     atualizaVisor();
 }
 
