@@ -165,7 +165,7 @@ class Calculadora {
         this.memoria = 0;
     }
 
-    // tecla 1x : calcula o inverso do número apresentado no visor
+    // tecla 1x : calcula o inverso de um número
     tecla1x() {
         if (this.estadoErro) return;
         this.nrVisor = String(1/this.nrVisor);
@@ -192,6 +192,12 @@ class Calculadora {
             guess = (guess + this.nrVisor / guess) / 2;
         }
         this.nrVisor = guess;
+    }
+
+    // tecla Quad : calcula um número elevado ao quadrado
+    teclaQuad() {
+        if (this.estadoErro) return;
+        this.nrVisor = this.nrVisor*this.nrVisor;
     }
 }
 
@@ -273,6 +279,12 @@ let teclaSinal = () => {
 // MOSTRA A RAIZ DO NÚMERO NO VISOR
 let teclaRaiz = () => {
     calculadora.teclaRaiz();
+    atualizaVisor();
+}
+
+// MOSTRA O QUADRADO DO NÚMERO NO VISOR
+let teclaQuad = () => {
+    calculadora.teclaQuad();
     atualizaVisor();
 }
 
