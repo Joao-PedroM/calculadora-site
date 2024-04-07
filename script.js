@@ -101,6 +101,12 @@ class Calculadora {
         this.memTemp = '';
         this.nrVisor = String(resultado).slice(0, 10);
     }
+    
+    // Limpa todos os dados (incluindo a memória)
+    teclaOnOff() {
+        teclaC();
+        teclaCLM();
+    }
 
     // Limpa dados (exceto memória)
     teclaC() {
@@ -165,6 +171,12 @@ let defOp = (op) => {
 // CALCULA A OPERAÇÃO
 let defIgual = () => {
     calculadora.igual();
+    atualizaVisor();
+}
+
+// TECLA ON/OFF: LIMPA TUDO, INCLUINDO MEMÓRIA
+let teclaOnOff = () => {
+    calculadora.teclaOnOff();
     atualizaVisor();
 }
 
