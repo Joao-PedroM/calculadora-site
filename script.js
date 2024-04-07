@@ -12,7 +12,8 @@ class Calculadora {
             DIV: 1,
             MULT: 2,
             SUB: 3,
-            SUM: 4
+            SUM: 4,
+            PORC: 5
         };
         this.opAtual = this.op.NOP;
     }
@@ -66,6 +67,9 @@ class Calculadora {
             case '/':
                 this.opAtual = this.op.DIV;
                 break;
+            case '%':
+                this.opAtual = this.op.PORC;
+                break;
         }
         this.memTemp = this.nrVisor;
     }
@@ -94,6 +98,9 @@ class Calculadora {
             case this.op.SUM:
                 resultado = num1 + num2;
                 break;
+            case this.op.PORC:
+                num1 = num1*0.01
+                resultado = num1*num2;
         }
         this.opAtual = this.op.NOP;
         this.iniciouSegundo = false;
