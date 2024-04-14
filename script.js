@@ -31,6 +31,9 @@ class Calculadora {
         if (this.nrVisor.length == 0) {
             this.nrVisor = '0';
         }
+        if (this.nrVisor.toString().length > 10) {
+            this.nrVisor = String(this.nrVisor).slice(0, 10);
+        }
         return this.nrVisor;
     }
 
