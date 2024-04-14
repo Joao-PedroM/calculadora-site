@@ -31,10 +31,49 @@ class Calculadora {
         if (this.nrVisor.length == 0) {
             this.nrVisor = '0';
         }
-        if (this.nrVisor.toString().length > 10) {
-            this.nrVisor = String(this.nrVisor).slice(0, 10);
-        }
+        this.arredondamento();
         return this.nrVisor;
+    }
+
+    // arredonda números decimais de números racionais que beiram a ser inteiros
+    arredondamento() {
+        if (this.nrVisor.toString().length >= 10) {
+            this.nrVisor = String(this.nrVisor).slice(0, 10);
+            let visorString = this.nrVisor.toString();
+            let indexPonto = visorString.indexOf(".");
+            let parteDecimal = visorString.slice(indexPonto + 1);
+            if (parteDecimal.length <=4) {
+                parteDecimal.length += 2;
+            }
+
+            let arredondZ = true;
+            for (let j = 0; j < parteDecimal.length-2; j++) {
+                if (parteDecimal.charAt(j) !== "0") {
+                    arredondZ = false;
+                    break;
+                }
+            }
+            let arredondN = true;
+            if (arredondZ == false) {
+                for (let i = 0; i < parteDecimal.length-2; i++) {
+                    if (parteDecimal.charAt(i) !== "9") {
+                        arredondN = false;
+                        break;
+                    }
+                }
+            }
+            if (arredondZ && parteDecimal !== "") {
+                this.nrVisor = String(this.nrVisor).slice(0, indexPonto);
+            }
+            if (arredondN && parteDecimal !== "") {
+                this.nrVisor = String(this.nrVisor).slice(0, indexPonto);
+                if (this.nrVisor < 0) {
+                    this.nrVisor--;
+                }else {
+                    this.nrVisor++;
+                }
+            }
+        }
     }
 
     // recebe dígito
@@ -116,6 +155,7 @@ class Calculadora {
         this.ptDecimal = false;
         this.memTemp = '';
         this.nrVisor = String(resultado).slice(0, 10);
+        this.arredondamento();
     }
     
     // Limpa todos os dados (incluindo a memória)
