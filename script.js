@@ -43,7 +43,7 @@ class Calculadora {
             let indexPonto = visorString.indexOf(".");
             let parteDecimal = visorString.slice(indexPonto + 1);
             if (parteDecimal.length <=4) {
-                parteDecimal.length += 2;
+                return;
             }
 
             let arredondZ = true;
